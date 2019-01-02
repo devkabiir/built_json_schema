@@ -1,0 +1,480 @@
+{
+  "$schema"   : "http://json-schema.org/draft-04/schema#",
+  "title"     : "post",
+  "type"      : "object",
+  "properties": {
+    "date": {
+      "$ref": "#/definitions/custom_date"
+    },
+    "date_gmt": {
+      "description": "The date the object was published, as GMT.",
+      "type"       : "string",
+      "format"     : "date-time",
+      "context"    : [
+        "view",
+        "edit"
+      ]
+    },
+    "guid": {
+      "description": "The globally unique identifier for the object.",
+      "type"       : "object",
+      "context"    : [
+        "view",
+        "edit"
+      ],
+      "readonly"  : true,
+      "properties": {
+        "raw": {
+          "description": "GUID for the object, as it exists in the database.",
+          "type"       : "string",
+          "context"    : [
+            "edit"
+          ],
+          "readonly": true
+        },
+        "rendered": {
+          "description": "GUID for the object, transformed for display.",
+          "type"       : "string",
+          "context"    : [
+            "view",
+            "edit"
+          ],
+          "readonly": true
+        }
+      }
+    },
+    "id": {
+      "description": "Unique identifier for the object.",
+      "type"       : "integer",
+      "default"    : -1,
+      "context"    : [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "readonly": true
+    },
+    "link": {
+      "description": "URL to the object.",
+      "type"       : "string",
+      "format"     : "uri",
+      "default"    : "http://example.com/path/object",
+      "context"    : [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "readonly": true
+    },
+    "modified": {
+      "description": "The date the object was last modified, in the site's timezone.",
+      "type"       : "string",
+      "format"     : "date-time",
+      "context"    : [
+        "view",
+        "edit"
+      ],
+      "readonly": true
+    },
+    "modified_gmt": {
+      "description": "The date the object was last modified, as GMT.",
+      "type"       : "string",
+      "format"     : "date-time",
+      "context"    : [
+        "view",
+        "edit"
+      ],
+      "readonly": true
+    },
+    "slug": {
+      "description": "An alphanumeric identifier for the object unique to its type.",
+      "type"       : "string",
+      "context"    : [
+        "view",
+        "edit",
+        "embed"
+      ]
+    },
+    "status": {
+      "description": "A named status for the object.",
+      "type"       : "string",
+      "default"    : "publish_to",
+      "enum"       : [
+        "publish_to",
+        "future",
+        "draft",
+        "pending",
+        "private"
+      ],
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "type": {
+      "description": "Type of Post for the object.",
+      "type"       : "string",
+      "context"    : [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "readonly": true
+    },
+    "password": {
+      "description": "A password to protect access to the content and excerpt.",
+      "type"       : "string",
+      "context"    : [
+        "edit"
+      ]
+    },
+    "title": {
+      "description": "The title for the object.",
+      "type"       : "object",
+      "context"    : [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "properties": {
+        "raw": {
+          "description": "Title for the object, as it exists in the database.",
+          "type"       : "string",
+          "context"    : [
+            "edit"
+          ]
+        },
+        "rendered": {
+          "description": "HTML title for the object, transformed for display.",
+          "type"       : "string",
+          "context"    : [
+            "view",
+            "edit",
+            "embed"
+          ],
+          "readonly": true
+        }
+      }
+    },
+    "content": {
+      "description": "The content for the object.",
+      "type"       : "object",
+      "context"    : [
+        "view",
+        "edit"
+      ],
+      "properties": {
+        "raw": {
+          "description": "Content for the object, as it exists in the database.",
+          "type"       : "string",
+          "context"    : [
+            "edit"
+          ]
+        },
+        "rendered": {
+          "description": "HTML content for the object, transformed for display.",
+          "type"       : "string",
+          "context"    : [
+            "view",
+            "edit"
+          ],
+          "readonly": true
+        },
+        "protected": {
+          "description": "Whether the content is protected with a password.",
+          "type"       : "boolean",
+          "context"    : [
+            "view",
+            "edit",
+            "embed"
+          ],
+          "readonly": true
+        }
+      }
+    },
+    "author": {
+      "description": "The ID for the author of the object.",
+      "type"       : "integer",
+      "context"    : [
+        "view",
+        "edit",
+        "embed"
+      ]
+    },
+    "excerpt": {
+      "description": "The excerpt for the object.",
+      "type"       : "object",
+      "default"    : {
+        "rendered": "explicit set rendered property"
+      },
+      "context": [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "properties": {
+        "raw": {
+          "description": "Excerpt for the object, as it exists in the database.",
+          "type"       : "string",
+          "default"    : "this is the default raw excerpt",
+          "context"    : [
+            "edit"
+          ]
+        },
+        "rendered": {
+          "description": "HTML excerpt for the object, transformed for display.",
+          "type"       : "string",
+          "context"    : [
+            "view",
+            "edit",
+            "embed"
+          ],
+          "readonly": true
+        },
+        "protected": {
+          "description": "Whether the excerpt is protected with a password.",
+          "type"       : "boolean",
+          "context"    : [
+            "view",
+            "edit",
+            "embed"
+          ],
+          "readonly": true
+        }
+      }
+    },
+    "featured_media": {
+      "description": "The ID of the featured media for the object.",
+      "type"       : "integer",
+      "context"    : [
+        "view",
+        "edit",
+        "embed"
+      ]
+    },
+    "comment_status": {
+      "description": "Whether or not comments are open on the object.",
+      "type"       : "string",
+      "enum"       : [
+        "open",
+        "closed"
+      ],
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "ping_status": {
+      "description": "Whether or not the object can be pinged.",
+      "type"       : "string",
+      "enum"       : [
+        "open",
+        "closed"
+      ],
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "format": {
+      "description": "The format for the object.",
+      "type"       : "string",
+      "enum"       : [
+        "standard",
+        "aside",
+        "chat",
+        "gallery",
+        "link",
+        "image",
+        "quote",
+        "status",
+        "video",
+        "audio"
+      ],
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "meta": {
+      "description": "Meta fields.",
+      "type"       : "object",
+      "context"    : [
+        "view",
+        "edit"
+      ],
+      "properties": {}
+    },
+    "sticky": {
+      "description": "Whether or not the object should be treated as sticky.",
+      "type"       : "boolean",
+      "context"    : [
+        "view",
+        "edit"
+      ]
+    },
+    "template": {
+      "description": "The theme file to use to display the object.",
+      "type"       : "string",
+      "context"    : [
+        "view",
+        "edit"
+      ]
+    },
+    "categories": {
+      "description": "The terms assigned to the object in the category taxonomy.",
+      "type"       : "array",
+      "default"    : [
+        1,
+        2,
+        3
+      ],
+      "items": {
+        "type": "integer"
+      },
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "tags": {
+      "description": "The terms assigned to the object in the post_tag taxonomy.",
+      "type"       : "array",
+      "items"      : {
+        "type": "integer"
+      },
+      "context": [
+        "view",
+        "edit"
+      ]
+    }
+  },
+  "links": [
+    {
+      "rel"         : "https://api.w.org/action-publish",
+      "title"       : "The current user can publish this post.",
+      "href"        : "http://dummysite.local/wp-json/wp/v2/posts/{id}",
+      "targetSchema": {
+        "type"      : "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "publish",
+              "future"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rel"         : "https://api.w.org/action-sticky",
+      "title"       : "The current user can sticky this post.",
+      "href"        : "http://dummysite.local/wp-json/wp/v2/posts/{id}",
+      "targetSchema": {
+        "type"      : "object",
+        "properties": {
+          "sticky": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    {
+      "rel"         : "https://api.w.org/action-assign-author",
+      "title"       : "The current user can change the author on this post.",
+      "href"        : "http://dummysite.local/wp-json/wp/v2/posts/{id}",
+      "targetSchema": {
+        "type"      : "object",
+        "properties": {
+          "author": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    {
+      "rel"         : "https://api.w.org/action-assign-categories",
+      "title"       : "The current user can assign terms in the category taxonomy.",
+      "href"        : "http://dummysite.local/wp-json/wp/v2/posts/{id}",
+      "targetSchema": {
+        "type"      : "object",
+        "properties": {
+          "categories": {
+            "type" : "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    {
+      "rel"         : "https://api.w.org/action-create-categories",
+      "title"       : "The current user can create terms in the category taxonomy.",
+      "href"        : "http://dummysite.local/wp-json/wp/v2/posts/{id}",
+      "targetSchema": {
+        "type"      : "object",
+        "properties": {
+          "categories": {
+            "type" : "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    {
+      "rel"         : "https://api.w.org/action-assign-tags",
+      "title"       : "The current user can assign terms in the post_tag taxonomy.",
+      "href"        : "http://dummysite.local/wp-json/wp/v2/posts/{id}",
+      "targetSchema": {
+        "type"      : "object",
+        "properties": {
+          "tags": {
+            "type" : "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    {
+      "rel"         : "https://api.w.org/action-create-tags",
+      "title"       : "The current user can create terms in the post_tag taxonomy.",
+      "href"        : "http://dummysite.local/wp-json/wp/v2/posts/{id}",
+      "targetSchema": {
+        "type"      : "object",
+        "properties": {
+          "tags": {
+            "type" : "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "definitions": {
+    "custom_date": {
+      "title"      : "Custom Date",
+      "type"       : "object",
+      "description": "My Custom Date Definition",
+      "properties" : {
+        "date": {
+          "description": "The date the object was published, in the site's timezone.",
+          "type"       : "string",
+          "format"     : "date-time",
+          "context"    : [
+            "view",
+            "edit",
+            "embed"
+          ]
+        }
+      }
+    }
+  }
+}

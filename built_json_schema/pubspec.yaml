@@ -20,8 +20,6 @@ dev_dependencies:
 dependency_overrides:
   built_json_schema_generator:
     path: ../built_json_schema_generator
-  pre_commit:
-    path: ../pre_commit
 
 environment:
   sdk: '>=2.0.0 <3.0.0'

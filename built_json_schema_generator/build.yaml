@@ -1,0 +1,16 @@
+# Read about `build.yaml` at https://pub.dartlang.org/packages/build_config
+
+targets:
+  $default:
+    builders:
+      built_json_schema_generator|built_json_schema:
+        enabled: true
+
+builders:
+  built_json_schema:
+    import: 'package:built_json_schema_generator/built_json_schema_generator.dart'
+    builder_factories: ['buildJsonSchemaBuilder']
+    build_extensions: { '.dart': ['.model.dart'] }
+    auto_apply: dependents
+    build_to: source
+    runs_before: ['built_value_generator|built_value']

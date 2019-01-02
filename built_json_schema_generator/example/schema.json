@@ -1,0 +1,92 @@
+{
+  "$schema"   : "http:\/\/json-schema.org\/draft-04\/schema#",
+  "title"     : "post",
+  "type"      : "object",
+  "properties": {
+    "date": {
+      "description": "The date the object was published, in the site's timezone.",
+      "type"       : "string",
+      "format"     : "date-time",
+      "context"    : [
+        "view",
+        "edit",
+        "embed"
+      ]
+    },
+    "guid": {
+      "description": "The globally unique identifier for the object.",
+      "type"       : "object",
+      "context"    : [
+        "view",
+        "edit"
+      ],
+      "readonly"  : true,
+      "properties": {
+        "raw": {
+          "description": "GUID for the object, as it exists in the database.",
+          "type"       : "string",
+          "context"    : [
+            "edit"
+          ],
+          "readonly": true
+        },
+        "rendered": {
+          "description": "GUID for the object, transformed for display.",
+          "type"       : "string",
+          "context"    : [
+            "view",
+            "edit"
+          ],
+          "readonly": true
+        }
+      }
+    },
+    "id": {
+      "description": "Unique identifier for the object.",
+      "type"       : "integer",
+      "context"    : [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "readonly": true
+    },
+    "link": {
+      "description": "URL to the object.",
+      "type"       : "string",
+      "format"     : "uri",
+      "context"    : [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "readonly": true
+    },
+    "status": {
+      "description": "A named status for the object.",
+      "type"       : "string",
+      "enum"       : [
+        "publish",
+        "future",
+        "draft",
+        "pending",
+        "private"
+      ],
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "categories": {
+      "description": "The terms assigned to the object in the category taxonomy.",
+      "type"       : "array",
+      "items"      : {
+        "type": "integer"
+      },
+      "context": [
+        "view",
+        "edit"
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+name: built_json_schema_generator
+version: 0.0.1
+description: Generate built_value models from json schema
+author: Dinesh Ahuja <dev@kabiir.me>
+homepage: https://github.com/devkabiir/built_json_schema_generator/
+
+dependencies:
+  built_json_schema:
+    git: https://github.com/devkabiir/built_json_schema/
+  build_config: ^0.3.0
+  build: ^1.0.0
+  source_gen: ^0.9.0
+  logging: <1.0.0
+  json_schema_dart2: ^3.0.0
+  code_builder: ^3.0.0
+  recase: ^2.0.0
+  path: ^1.0.0
+  built_value: ^6.0.0
+  http: ^0.12.0
+  dart_style: ^1.0.0
+  analyzer: <1.0.0
+  built_collection: ^4.0.0
+
+dev_dependencies:
+  test: ^1.0.0
+  build_test: ^0.10.0
+  pre_commit:
+    git: https://github.com/devkabiir/pre_commit/
+  build_runner: ^1.0.0
+  built_value_generator: ^6.0.0
+
+dependency_overrides:
+  built_json_schema:
+    path: ../built_json_schema
+
+environment:
+  sdk: '>=2.0.0 <3.0.0'
