@@ -3,36 +3,39 @@ language: dart
 
 # Custom configuration
 sudo: required
+branches:
+  only:
+    - master
 
 jobs:
   include:
     - stage: analyzer_and_format
-      name: 'SDK: stable - DIR: built_json_schema - TASKS: pub run pre_commit 0'
+      name: "SDK: stable - DIR: built_json_schema - TASKS: pub run pre_commit 0"
       script: ./tool/travis.sh command_0
       env: PKG="built_json_schema"
       dart: stable
     - stage: analyzer_and_format
-      name: 'SDK: stable - DIR: built_json_schema - TASKS: pub run pre_commit 1'
+      name: "SDK: stable - DIR: built_json_schema - TASKS: pub run pre_commit 1"
       script: ./tool/travis.sh command_1
       env: PKG="built_json_schema"
       dart: stable
     - stage: analyzer_and_format
-      name: 'SDK: stable - DIR: built_json_schema_generator - TASKS: pub run pre_commit 0'
+      name: "SDK: stable - DIR: built_json_schema_generator - TASKS: pub run pre_commit 0"
       script: ./tool/travis.sh command_0
       env: PKG="built_json_schema_generator"
       dart: stable
     - stage: analyzer_and_format
-      name: 'SDK: stable - DIR: built_json_schema_generator - TASKS: pub run pre_commit 1'
+      name: "SDK: stable - DIR: built_json_schema_generator - TASKS: pub run pre_commit 1"
       script: ./tool/travis.sh command_1
       env: PKG="built_json_schema_generator"
       dart: stable
     - stage: unit_test
-      name: 'SDK: stable - DIR: built_json_schema_generator - TASKS: pub run pre_commit 2'
+      name: "SDK: stable - DIR: built_json_schema_generator - TASKS: pub run pre_commit 2"
       script: ./tool/travis.sh command_2
       env: PKG="built_json_schema_generator"
       dart: stable
     - stage: unit_test
-      name: 'SDK: stable - DIR: built_json_schema_generator - TASKS: pub run build_runner test'
+      name: "SDK: stable - DIR: built_json_schema_generator - TASKS: pub run build_runner test"
       script: ./tool/travis.sh command_3
       env: PKG="built_json_schema_generator"
       dart: stable
@@ -41,12 +44,7 @@ stages:
   - analyzer_and_format
   - unit_test
 
-# Only building master means that we don't run two builds for each pull request.
-branches:
-  only:
-    - master
-
 cache:
   directories:
-    - '$HOME/.pub-cache'
+    - "$HOME/.pub-cache"
     - built_json_schema_generator/.dart_tool/build
