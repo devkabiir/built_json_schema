@@ -34,11 +34,6 @@ jobs:
       script: ./tool/travis.sh command_2
       env: PKG="built_json_schema_generator"
       dart: stable
-    - stage: unit_test
-      name: "SDK: stable - DIR: built_json_schema_generator - TASKS: pub run build_runner test"
-      script: ./tool/travis.sh command_3
-      env: PKG="built_json_schema_generator"
-      dart: stable
 
 stages:
   - analyzer_and_format

@@ -34,11 +34,6 @@ while (( "$#" )); do
     echo -e 'pub run pre_commit 2'
     pub run pre_commit 2 || EXIT_CODE=$?
     ;;
-  command_3) echo
-    echo -e '\033[1mTASK: command_3\033[22m'
-    echo -e 'pub run build_runner test'
-    pub run build_runner test || EXIT_CODE=$?
-    ;;
   *) echo -e "\033[31mNot expecting TASK '${TASK}'. Error!\033[0m"
     EXIT_CODE=1
     ;;

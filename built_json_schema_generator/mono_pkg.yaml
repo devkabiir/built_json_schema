@@ -12,7 +12,6 @@ stages:
       - command: pub run pre_commit 1
   - unit_test:
       - command: pub run pre_commit 2
-      - command: pub run build_runner test --delete-conflicting-outputs
 
 cache:
   directories:
